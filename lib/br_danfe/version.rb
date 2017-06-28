@@ -1,3 +1,3 @@
 module BrDanfe
-  VERSION = "0.7.0"
+  VERSION = "0.0.2"
 end

@@ -1,18 +1,4 @@
 pt-BR:
-  cce:
-    title: "Carta de Correção Eletrônica - CCe"
-    protocol: "PROTOCOLO DE AUTORIZAÇÃO"
-    key: "CHAVE DE ACESSO"
-    legal_note: "A Carta de Correção é disciplinada pelo § 1o-A do art. 7o
-                do Convênio S/N, de 15 de dezembro de 1970 e pode ser
-                utilizada para regularização de erro ocorrido na emissão de
-                documento fiscal, desde que o erro não esteja relacionado com:\n
-                I. as variáveis que determinam o valor do imposto tais como:
-                base de cálculo, alíquota, diferença de preço, quantidade,
-                valor da operação ou da prestação;\n
-                II. a correção de dados cadastrais que implique mudança do
-                remetente ou do destinatário;\n
-                III. a data de emissão ou de saída."
   danfe:
     chNFe: "CHAVE DE ACESSO"
     infProt: "PROTOCOLO DE AUTORIZAÇÃO DE USO"
@@ -23,8 +9,8 @@ pt-BR:
       sefaz: "Consulta de autenticidade no portal nacional da NF-e www.nfe.fazenda.gov.br/portal ou no site da Sefaz Autorizadora"
     ide:
       dEmi: "DATA DA EMISSÃO"
-      dSaiEnt: "DATA DA ENTRADA/SAÍDA"
-      hSaiEnt: "HORA DE ENTRADA/SAÍDA"
+      dSaiEnt: "DATA DA SAÍDA/ENTRADA"
+      hSaiEnt: "HORA DE SAÍDA"
       tpNF:
         entry: "ENTRADA"
         departure: "SAÍDA"
@@ -46,7 +32,7 @@ pt-BR:
     emit:
       IM: "INSCRIÇÃO MUNICIPAL"
       IE: "INSCRIÇÃO ESTADUAL"
-      IEST: "INSC.ESTADUAL DO SUBST. TRIBUTÁRIO"
+      IE_ST: "INSC.ESTADUAL DO SUBST. TRIBUTÁRIO"
       CNPJ: "CNPJ"
     dup:
       title: "FATURA / DUPLICATAS"
@@ -77,10 +63,10 @@ pt-BR:
     transp:
       modFrete:
         title: "FRETE POR CONTA"
-        emitter: "0-Emitente"
-        recipient: "1-Destinatário"
-        third_party: "2-Terceiros"
-        no_freight: "9-Sem Frete"
+        emitter: "0 - EMITENTE"
+        recipient: "1 - DEST."
+        third_party: "2 - TERCEIROS"
+        no_freight: "9 - SEM FRETE"
     veicTransp:
       RNTC: "CODIGO ANTT"
       placa: "PLACA DO VEÍCULO"
@@ -101,13 +87,13 @@ pt-BR:
         CFOP: "CFOP"
         uCom: "UNID"
         qCom: "QUANT"
-        vUnCom: "VL UNIT"
-        vProd: "VL TOTAL"
+        vUnCom: "VALOR UNIT"
+        vProd: "VALOR TOT"
         xProdST: "ST: MVA: %{pMVAST}% * Alíq: %{pICMSST}% * BC: %{vBCST} * Vlr: %{vICMSST}"
         xProdFCI: "FCI: %{nFCI}"
       ICMS:
         CST: "CST"
-        vBC: "BC ICMS"
+        vBC: "BASE CÁLC"
         vICMS: "VL ICMS"
         pICMS: "% ICMS"
       IPI:
@@ -116,16 +102,14 @@ pt-BR:
     issqn:
       title: "CÁLCULO DO ISSQN"
     total:
-      ISSQNtot:
-        vServ: "VALOR TOTAL DOS SERVIÇOS"
-        vBC: "BASE DE CÁLCULO DO ISSQN"
-        vISS: "VALOR DO ISSQN"
+      vServ: "VALOR TOTAL DOS SERVIÇOS"
+      vBCISS: "BASE DE CÁLCULO DO ISSQN"
+      ISSTot: "VALOR DO ISSQN"
     infAdic:
       title: "DADOS ADICIONAIS"
       infCpl: "INFORMAÇÕES COMPLEMENTARES"
       reserved: "RESERVADO AO FISCO"
       others: "OUTRAS INFORMAÇÕES"
-      difal: "Valores totais do ICMS Interestadual: DIFAL da UF destino R$%{vICMSUFDest} + FCP R$%{vFCPUFDest}; DIFAL da UF Origem R$%{vICMSUFRemet}."
       vol:
         title: "CONTINUAÇÃO TRANSPORTADOR/VOLUMES TRANSPORTADOS"
         qVol: "QUANT.:"
@@ -135,7 +119,7 @@ pt-BR:
         pesoB: "PESO B.:"
         pesoL: "PESO LÍQ.:"
     ticket:
-        xNome: "RECEBEMOS DE %{xNome} OS PRODUTOS/SERVIÇOS CONSTANTES DA NOTA FISCAL INDICADA AO LADO"
+        xNome: "RECEBEMOS DE %{xNome} OS PRODUTOS CONSTANTES DA NOTA FISCAL INDICADA ABAIXO"
         received_at: "DATA DE RECEBIMENTO"
         receiver: "IDENTIFICAÇÃO E ASSINATURA DO RECEBEDOR"
         document: "NF-e\nN°. %{nNF}\nSÉRIE %{serie}"
