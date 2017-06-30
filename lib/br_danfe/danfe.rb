@@ -17,7 +17,7 @@ module BrDanfe
 
     def render_pdf
       generate
-      @pdf.render filename
+      @pdf.render
     end
 
     private
