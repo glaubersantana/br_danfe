@@ -11,13 +11,22 @@ module BrDanfe
       if nVol > 1
         render_extra_volumes
       else
-        @pdf.ibox 3.07, 12.93, 0.25, 26.33, I18n.t("danfe.infAdic.infCpl"), @xml["infAdic/infCpl"], { :size => 6, :valign => :top }
+        @pdf.ibox 3.07, 14.00, 0.25, 26.33, I18n.t("danfe.infAdic.infCpl"),
+          informacao_adicional_completa, { :size => 6, :valign => :top }
       end
 
-      @pdf.ibox 3.07, 7.62, 13.17, 26.33, I18n.t("danfe.infAdic.reserved")
+      @pdf.ibox 3.07, 6.55, 14.24, 26.33, I18n.t("danfe.infAdic.reserved")
     end
 
     private
+    def informacao_adicional_completa
+      [observacoes_adicionais, @xml["infAdic/infCpl"]].flatten.join("\n")
+    end
+
+    def observacoes_adicionais
+      @xml.css("obsCont[xCampo='OBS_ADICIONAL']/xTexto").map(&:text)
+    end
+
     def render_extra_volumes
       @pdf.ibox 3.07, 12.93, 0.25, 26.33, I18n.t("danfe.infAdic.infCpl"), "", { :size => 8, :valign => :top }
       @pdf.ibox 3.07, 12.93, 0.25, 26.60, "", I18n.t("danfe.infAdic.vol.title"), { :size => 5, :valign => :top, :border => 0 }

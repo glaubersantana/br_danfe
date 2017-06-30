@@ -14,6 +14,10 @@ module BrDanfe
       pdf.lnumeric 0.85, 3.46, 10.63, 13.63, xml, "ICMSTot/vOutro"
       pdf.lnumeric 0.85, 3.46, 14.09, 13.63, xml, "ICMSTot/vIPI"
       pdf.lnumeric 0.85, 3.27, 17.55, 13.63, xml, "ICMSTot/vNF", :style => :bold
+
+      valor_aprox_impostos = xml.css("obsCont[xCampo='IMPOSTOS']/xTexto").text
+
+      pdf.ibox 0.85, 20.56, 0.25, 14.48, "VALOR APROXIMADO DOS IMPOSTOS", valor_aprox_impostos, { :size => 8 }
     end
   end
 end

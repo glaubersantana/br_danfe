@@ -41,13 +41,23 @@ module BrDanfe
     end
 
     def idate(h, w, x, y, i18n = "", info = "", options = {})
-      tt = info.split("-")
+      tt = info.split("T")[0].split("-")
       data = "#{tt[2]}/#{tt[1]}/#{tt[0]}"
 
       label = ""
       label = I18n.t("danfe.#{i18n}") if i18n != ""
 
       ibox h, w, x, y, label, data, options
+    end
+
+    def itime(h, w, x, y, i18n = "", info = "", options = {})
+      hh = info.split("T")[1].split(":")
+      hora = "#{hh[0]}:#{hh[1]}"
+
+      label = ""
+      label = I18n.t("danfe.#{i18n}") if i18n != ""
+
+      ibox h, w, x, y, label, hora, options
     end
 
     def lnumeric(h, w, x, y, xml, xpath, options = {})

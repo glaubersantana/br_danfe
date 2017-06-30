@@ -55,9 +55,9 @@ module BrDanfe
       Dup.new(@pdf, @xml).render
       Icmstot.render(@pdf, @xml)
       Transp.render(@pdf, @xml)
-      nVol = Vol.new(@pdf, @xml).render
+      nVol = 0 #Vol.new(@pdf, @xml).render
       DetHeader.new(@pdf, @xml).render
-      Issqn.render(@pdf, @xml)
+      #Issqn.render(@pdf, @xml)
       Infadic.new(@pdf, @xml).render(nVol)
     end
   end
