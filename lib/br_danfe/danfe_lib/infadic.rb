@@ -32,15 +32,15 @@ module BrDanfe
         @pdf.ibox 3.07, 12.93, 0.25, 26.33, I18n.t("danfe.infAdic.infCpl"), "", { :size => 8, :valign => :top }
         @pdf.ibox 3.07, 12.93, 0.25, 26.60, "", I18n.t("danfe.infAdic.vol.title"), { :size => 5, :valign => :top, :border => 0 }
 
-        volumes = 0
+        #volumes = 0
         y = 26.67
-        @xml.collect("xmlns", "vol") do |det|
-          volumes += 1
-          if volumes > 1
-            render_extra_volume(det, y + 0.10)
-            y += 0.15
-          end
-        end
+        #@xml.collect("xmlns", "vol") do |det|
+        #  volumes += 1
+        #  if volumes > 1
+        #    render_extra_volume(det, y + 0.10)
+        #    y += 0.15
+        #  end
+        #end
 
         @pdf.ibox 2.07, 12.93, 0.25, y + 0.30, "", I18n.t("danfe.infAdic.others"), { :size => 6, :valign => :top, :border => 0 }
         @pdf.ibox 2.07, 12.93, 0.25, y + 0.50, "", @xml["infAdic/infCpl"], { :size => 5, :valign => :top, :border => 0 }

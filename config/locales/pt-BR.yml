@@ -51,7 +51,7 @@ pt-BR:
     dup:
       title: "FATURA / DUPLICATAS"
       nDup: "Núm.:"
-      vDup: "Valor: R$"
+      vDup: "Valor:"
       dVenc: "Venc.:"
     ICMSTot:
       title: "CÁLCULO DO IMPOSTO"
