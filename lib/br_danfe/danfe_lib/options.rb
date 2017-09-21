@@ -2,7 +2,7 @@ module BrDanfe
   module DanfeLib
     class Options < OpenStruct
       DEFAULTOPTIONS = {
-        :logo_path => ""
+        "logo_path" => ""
       }
 
       def initialize(new_options={})

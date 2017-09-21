@@ -16,7 +16,7 @@ module BrDanfe
 
       private
       def nfe_key
-        node = @xml.css("procEventoNFe > evento > infEvento > chNFe")
+        node = @xml.css("envEventoNFe > evento > infEvento > chNFe")
         return node ? node.text : ""
       end
     end
