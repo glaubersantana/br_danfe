@@ -34,8 +34,8 @@ module BrDanfe
           det.css("prod/uCom").text,
           numerify(det, "prod/qCom"),
           numerify(det, "prod/vUnCom"),
-          numerify(det, "prod/vDesc"),
           numerify(det, "prod/vProd"),
+          numerify(det, "prod/vDesc"),
           numerify(det, "ICMS/*/vCredICMSSN"),
           numerify(det, "ICMS/*/vBC"),
           numerify(det, "ICMS/*/vICMS"),
@@ -59,8 +59,8 @@ module BrDanfe
           5  => 0.80.cm,
           6  => 1.00.cm, # qCom
           7  => 1.20.cm, # vUnCom
-          8  => 1.20.cm, # vDesc
-          9  => 1.20.cm, # vProd
+          8  => 1.20.cm, # vProd
+          9  => 1.20.cm, # vDesc
           10 => 1.00.cm, # vCredICMSSN
           11 => 1.00.cm,
           12 => 1.00.cm,
