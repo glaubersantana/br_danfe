@@ -41,7 +41,17 @@ module BrDanfe
 
       @pdf.repeat(:all) { repeat_on_each_page }
 
+      DanfeLib::Dest.new(@pdf, @xml).render
+      DanfeLib::Dup.new(@pdf, @xml).render
+      DanfeLib::Icmstot.render(@pdf, @xml)
+      DanfeLib::Transp.render(@pdf, @xml)
+      nVol = 0 #DanfeLib::Vol.new(@pdf, @xml).render
+      DanfeLib::DetHeader.new(@pdf, @xml).render
+      #DanfeLib::Issqn.render(@pdf, @xml)
+
       DanfeLib::DetBody.new(@pdf, @xml).render
+
+      DanfeLib::Infadic.new(@pdf, @xml).render(nVol)
 
       @pdf.page_count.times do |i|
         @pdf.go_to_page(i + 1)
@@ -56,14 +66,6 @@ module BrDanfe
     def repeat_on_each_page
       DanfeLib::Ticket.render(@pdf, @xml)
       DanfeLib::Emit.new(@pdf, @xml, @options.logo_path).render
-      DanfeLib::Dest.new(@pdf, @xml).render
-      DanfeLib::Dup.new(@pdf, @xml).render
-      DanfeLib::Icmstot.render(@pdf, @xml)
-      DanfeLib::Transp.render(@pdf, @xml)
-      nVol = 0 #DanfeLib::Vol.new(@pdf, @xml).render
-      DanfeLib::DetHeader.new(@pdf, @xml).render
-      #DanfeLib::Issqn.render(@pdf, @xml)
-      DanfeLib::Infadic.new(@pdf, @xml).render(nVol)
     end
   end
 end
