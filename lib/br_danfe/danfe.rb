@@ -51,8 +51,11 @@ module BrDanfe
     end
 
     def generate
-      @pdf.stamp("has_no_fiscal_value") if DanfeLib::Helper.has_no_fiscal_value?(@xml)
-      @pdf.stamp("canceled") if @canceled
+      if @canceled
+        @pdf.stamp("canceled")
+      elsif DanfeLib::Helper.has_no_fiscal_value?(@xml)
+        @pdf.stamp("has_no_fiscal_value")
+      end
 
       @pdf.repeat(:all) { repeat_on_each_page }
 
