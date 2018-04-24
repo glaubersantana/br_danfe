@@ -5,7 +5,7 @@ module BrDanfe
     def initialize(xml, canceled = false)
       @xml = DanfeLib::XML.new(xml)
       @pdf = DanfeLib::Document.new
-      @options = DanfeLib::Options.new(:nfe_status => nfe_status)
+      @options = DanfeLib::Options.new
       @canceled = canceled
 
       create_watermarks
