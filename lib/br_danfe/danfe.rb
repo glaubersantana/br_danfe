@@ -2,12 +2,13 @@ module BrDanfe
   class Danfe
     attr_reader :options
 
-    def initialize(xml)
+    def initialize(xml, canceled = false)
       @xml = DanfeLib::XML.new(xml)
       @pdf = DanfeLib::Document.new
-      @options = DanfeLib::Options.new
+      @options = DanfeLib::Options.new(:nfe_status => nfe_status)
+      @canceled = canceled
 
-      create_watermark
+      create_watermarks
     end
 
     def save_pdf(filename)
@@ -21,10 +22,23 @@ module BrDanfe
     end
 
     private
-    def create_watermark
+    def create_watermarks
       @pdf.create_stamp("has_no_fiscal_value") do
         @pdf.fill_color "7d7d7d"
         @pdf.text_box I18n.t("danfe.others.has_no_fiscal_value"),
+          :size => 2.2.cm,
+          :width => @pdf.bounds.width,
+          :height => @pdf.bounds.height,
+          :align => :center,
+          :valign => :center,
+          :at => [0, @pdf.bounds.height],
+          :rotate => 45,
+          :rotate_around => :center
+      end
+
+      @pdf.create_stamp("canceled") do
+        @pdf.fill_color "7d7d7d"
+        @pdf.text_box I18n.t("danfe.others.canceled"),
           :size => 2.2.cm,
           :width => @pdf.bounds.width,
           :height => @pdf.bounds.height,
@@ -38,6 +52,7 @@ module BrDanfe
 
     def generate
       @pdf.stamp("has_no_fiscal_value") if DanfeLib::Helper.has_no_fiscal_value?(@xml)
+      @pdf.stamp("canceled") if @canceled
 
       @pdf.repeat(:all) { repeat_on_each_page }
 
