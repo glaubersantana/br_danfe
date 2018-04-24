@@ -27,10 +27,6 @@ module BrDanfe
         homologation?(xml) || unauthorized?(xml)
       end
 
-      def self.canceled?(xml)
-        homologation?(xml) || unauthorized?(xml)
-      end
-
       private
       def self.homologation?(xml)
         xml.css("nfeProc/NFe/infNFe/ide/tpAmb").text == "2"
