@@ -1,12 +1,14 @@
 module BrDanfe
   class Danfe
+    AVAILABLE_STAMPS = [:has_no_fiscal_value, :canceled, :denied]
+
     attr_reader :options
 
-    def initialize(xml, canceled = false)
+    def initialize(xml, custom_stamp = nil)
       @xml = DanfeLib::XML.new(xml)
       @pdf = DanfeLib::Document.new
       @options = DanfeLib::Options.new
-      @canceled = canceled
+      @custom_stamp = custom_stamp
 
       create_watermarks
     end
@@ -23,38 +25,27 @@ module BrDanfe
 
     private
     def create_watermarks
-      @pdf.create_stamp("has_no_fiscal_value") do
-        @pdf.fill_color "7d7d7d"
-        @pdf.text_box I18n.t("danfe.others.has_no_fiscal_value"),
-          :size => 2.2.cm,
-          :width => @pdf.bounds.width,
-          :height => @pdf.bounds.height,
-          :align => :center,
-          :valign => :center,
-          :at => [0, @pdf.bounds.height],
-          :rotate => 45,
-          :rotate_around => :center
-      end
-
-      @pdf.create_stamp("canceled") do
-        @pdf.fill_color "7d7d7d"
-        @pdf.text_box I18n.t("danfe.others.canceled"),
-          :size => 2.2.cm,
-          :width => @pdf.bounds.width,
-          :height => @pdf.bounds.height,
-          :align => :center,
-          :valign => :center,
-          :at => [0, @pdf.bounds.height],
-          :rotate => 45,
-          :rotate_around => :center
+      AVAILABLE_STAMPS.each do |available_stamp|
+        @pdf.create_stamp(available_stamp) do
+          @pdf.fill_color "7d7d7d"
+          @pdf.text_box I18n.t("danfe.others.#{available_stamp}"),
+            :size => 2.2.cm,
+            :width => @pdf.bounds.width,
+            :height => @pdf.bounds.height,
+            :align => :center,
+            :valign => :center,
+            :at => [0, @pdf.bounds.height],
+            :rotate => 45,
+            :rotate_around => :center
+        end
       end
     end
 
     def generate
-      if @canceled
-        @pdf.stamp("canceled")
+      if @custom_stamp && AVAILABLE_STAMPS.include?(@custom_stamp)
+        @pdf.stamp(@custom_stamp)
       elsif DanfeLib::Helper.has_no_fiscal_value?(@xml)
-        @pdf.stamp("has_no_fiscal_value")
+        @pdf.stamp(:has_no_fiscal_value)
       end
 
       @pdf.repeat(:all) { repeat_on_each_page }
