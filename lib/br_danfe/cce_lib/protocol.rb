@@ -16,6 +16,7 @@ module BrDanfe
       private
       def protocol
         node = @xml.css("envEvento > retEvento > infEvento > nProt")
+        node = @xml.css("procEventoNFe > retEvento > infEvento > nProt") if node.blank?
         return node ? node.text : ""
       end
     end

@@ -15,6 +15,7 @@ module BrDanfe
       private
       def correction
         node = @xml.css("envEvento > evento > infEvento > detEvento > xCorrecao")
+        node = @xml.css("procEventoNFe > evento > infEvento > detEvento > xCorrecao") if node.blank?
         return node ? node.text : ""
       end
     end
